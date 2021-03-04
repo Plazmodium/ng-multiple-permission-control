@@ -9,21 +9,29 @@ import { Permission } from '../permission.enum';
 export class PermissionService {
   checkPermissionLevel(
     user: IUserResponse,
-    feature: Features,
-    permission: Permission
+    feature?: string,
+    permission?: string
   ): boolean {
+    
     const userFeaturePermission = user.featurePermission.find(
-      fp => fp.feature === feature
+      fp => {
+        console.log('fp.permission', fp.permission)
+        console.log('permission', permission)
+        return fp.permission === feature
+      }
     );
-
+    console.log('userFeaturePermission', userFeaturePermission);
     if (!!userFeaturePermission) {
-      switch (permission) {
-        case Permission.View:
-          return userFeaturePermission.permission == Permission.View;
+    console.log('!!userFeaturePermission', !!userFeaturePermission)
+      switch (userFeaturePermission.permission) {
+        case Permission.User1:
+          return userFeaturePermission.permission === Permission.User1;
+        case Permission.User2:
+          return userFeaturePermission.permission !== Permission.User2;
         case Permission.Admin:
-          return userFeaturePermission.permission == Permission.Admin;
+          return userFeaturePermission.permission === Permission.Admin;
         default:
-          return userFeaturePermission.permission == Permission.Admin;
+          return false;
       }
     }
     return false;

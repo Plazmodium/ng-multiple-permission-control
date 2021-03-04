@@ -1,14 +1,7 @@
 <div class="container">
   <form class="form-container" [formGroup]="profileForm" (ngSubmit)="submit()">
-    <label>
-      Email:
-      <input type="text" formControlName="email" />
-    </label>
-
-    <label>
-      Password:
-      <input type="password" formControlName="password" />
-    </label>
+    <input placeholder="Email address" type="text" formControlName="email" />
+    <input placeholder="Password" type="password" formControlName="password" />
     <button type="submit" [disabled]="!profileForm.valid">Submit</button>
   </form>
 </div>

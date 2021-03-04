@@ -15,11 +15,14 @@ import { Subject } from 'rxjs';
 import { PermissionService } from '../services/permission-service.service';
 
 @Directive({
-  selector: '[appCheckPermissionDirective]'
+  selector: '[appCheckPermissions]'
 })
-export class CheckPermissionDirectiveDirective implements OnInit, OnDestroy {
-  @Input() appCheckPermissions: Permission;
-  @Input() appCheckPermissionsFeature: Features;
+export class CheckPermissionDirective implements OnInit, OnDestroy {
+  // @Input() appCheckPermissions: Permission;
+  // @Input() appCheckFeature: Features;
+  @Input() appCheckPermissions?: string;
+  @Input() appCheckPermissionsFeature?: string;
+
   private onDestroy$ = new Subject<boolean>();
 
   constructor(
@@ -28,8 +31,8 @@ export class CheckPermissionDirectiveDirective implements OnInit, OnDestroy {
     private viewContainer: ViewContainerRef,
     private permissionService: PermissionService
   ) {
-    this.appCheckPermissions = Permission.Admin;
-    this.appCheckPermissionsFeature = Features.All;
+    // this.appCheckPermissions = Permission.Admin;
+
   }
 
   ngOnInit() {
@@ -39,16 +42,45 @@ export class CheckPermissionDirectiveDirective implements OnInit, OnDestroy {
         takeUntil(this.onDestroy$)
       )
       .subscribe(user => {
+        console.log('feature CheckPermissionDirective:', this.appCheckPermissions);
+        console.log('permission CheckPermissionDirective:', this.appCheckPermissionsFeature);
+
+        // if (user.featurePermission[0].feature === Features.All) {
+        //   console.log('1', user.featurePermission[0].feature)
+        //   this.viewContainer.createEmbeddedView(this.templateRef);
+        // } else if (user.featurePermission[0].feature === Features.Section1) {
+        //   console.log('2', user.featurePermission[0].feature)
+        //   this.viewContainer.createEmbeddedView(this.templateRef);
+        // } else if (user.featurePermission[0].feature === Features.Section2) {
+        //   console.log('3', user.featurePermission[0].feature)
+        //   this.viewContainer.createEmbeddedView(this.templateRef);
+        // } else {
+        //   this.viewContainer.clear();
+        // }
+
+        // if (this.appCheckPermissions === 'admin') {
+        //   console.log('object')
+        //   this.viewContainer.createEmbeddedView(this.templateRef);
+        // } else if (this.appCheckPermissions === 'user1') {
+        //   this.viewContainer.createEmbeddedView(this.templateRef);
+        // } else if (this.appCheckPermissions === 'user2') {
+        //   this.viewContainer.createEmbeddedView(this.templateRef);
+        // }else{
+        //   this.viewContainer.clear();
+        // }
+
         if (
           !!user &&
           this.permissionService.checkPermissionLevel(
             user,
-            this.appCheckPermissionsFeature,
-            this.appCheckPermissions
+            this.appCheckPermissions,
+            this.appCheckPermissionsFeature
           )
         ) {
+          console.log('here 1', this.templateRef)
           this.viewContainer.createEmbeddedView(this.templateRef);
         } else {
+          console.log('here 2')
           this.viewContainer.clear();
         }
       });

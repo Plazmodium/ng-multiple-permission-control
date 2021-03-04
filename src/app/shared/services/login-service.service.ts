@@ -22,22 +22,33 @@ export class LoginService {
 
   user1: IUserResponse = {
     email: 'user1@company.com',
-    name: 'Norman the User',
+    name: 'Norman the User 1',
     featurePermission: [
       {
         feature: Features.Section1,
-        permission: Permission.View
+        permission: Permission.User1
       }
     ]
   };
 
   user2: IUserResponse = {
     email: 'user2@company.com',
-    name: 'Cleo the User',
+    name: 'Cleo the User 2',
     featurePermission: [
       {
         feature: Features.Section2,
-        permission: Permission.View
+        permission: Permission.User2
+      }
+    ]
+  };
+
+  user3: IUserResponse = {
+    email: '',
+    name: '',
+    featurePermission: [
+      {
+        feature: Features.None,
+        permission: Permission.None
       }
     ]
   };
@@ -57,9 +68,10 @@ export class LoginService {
         break;
 
       default:
-        userResponse = this.admin;
+        userResponse = this.user3;
         break;
     }
+    console.log('userResponse', userResponse);
     return of(userResponse).pipe(delay(100));
   }
 }

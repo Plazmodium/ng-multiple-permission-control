@@ -9,17 +9,17 @@ import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { reducers, metaReducers } from './store';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
-import { CheckPermissionDirectiveDirective } from './shared/permission-control/models/directives/check-permission-directive.directive';
+import { CheckPermissionDirective } from './shared/permission-control/models/directives/check-permission-directive.directive';
 import { LoginComponent } from './containers/login/login.component';
 import { HomeComponent } from './containers/home/home.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginService } from './shared/services/login-service.service';
-import {UserFeatureModule} from "../app/user-feature/user-feature.module"
+import { UserFeatureModule } from "../app/user-feature/user-feature.module"
 
 @NgModule({
   declarations: [
     AppComponent,
-    CheckPermissionDirectiveDirective,
+    CheckPermissionDirective,
     LoginComponent,
     HomeComponent
   ],

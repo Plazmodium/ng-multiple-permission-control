@@ -1,1 +1,28 @@
-<p>home works!</p>
+<div class="topnav">
+  <div class="active">
+    Logged in as: <u>{{ name }}</u>
+  </div>
+</div>
+<br />
+
+<div class="sections-container">
+  <div *appCheckPermissions="permission; feature: feature" class="sections">
+    <div class="text">
+      Admin can see all
+    </div>
+  </div>
+
+  <div *appCheckPermissions="permission; feature: feature" class="sections">
+    <div class="text">
+      User 1 can see: Section 1
+    </div>
+  </div>
+
+  <div *appCheckPermissions="permission; feature: feature" class="sections">
+    <div class="text">
+      User 2 can see: Section 2
+    </div>
+  </div>
+</div>
+
+<div></div>

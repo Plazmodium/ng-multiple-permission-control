@@ -1,4 +1,6 @@
 export enum Permission {
-    View = 'view',
-    Admin = 'admin'
+    None = 'none',
+    Admin = 'admin',
+    User1 = 'user1',
+    User2 = 'user2'
 }
