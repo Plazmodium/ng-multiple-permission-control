@@ -12,6 +12,9 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { CheckPermissionDirectiveDirective } from './shared/permission-control/models/directives/check-permission-directive.directive';
 import { LoginComponent } from './containers/login/login.component';
 import { HomeComponent } from './containers/home/home.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { LoginService } from './shared/services/login-service.service';
+import {UserFeatureModule} from "../app/user-feature/user-feature.module"
 
 @NgModule({
   declarations: [
@@ -21,6 +24,8 @@ import { HomeComponent } from './containers/home/home.component';
     HomeComponent
   ],
   imports: [
+    UserFeatureModule,
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     StoreModule.forRoot({}, {}),
@@ -30,7 +35,7 @@ import { HomeComponent } from './containers/home/home.component';
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     StoreRouterConnectingModule.forRoot()
   ],
-  providers: [],
+  providers: [LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

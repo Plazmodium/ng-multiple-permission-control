@@ -12,10 +12,7 @@ import { Permission } from '../permission.enum';
 import * as userSelector from '../../../../user-feature/selectors/';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { User } from 'src/app/user-feature/models/user.model';
-import { UserState } from 'src/app/user-feature/reducer/user.reducer';
 import { PermissionService } from '../services/permission-service.service';
-import { GroupState } from 'src/app/user-feature/reducer';
 
 @Directive({
   selector: '[appCheckPermissionDirective]'

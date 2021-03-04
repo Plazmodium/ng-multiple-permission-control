@@ -1,13 +1,14 @@
 import { createAction, props } from '@ngrx/store';
-import { User } from '../models/user.model';
+import { IUserRequest, IUserResponse } from '../models/user.model';
 
 export const loadUsers = createAction(
-  '[User] Load Users'
+  '[User] Load Users',
+  props<{request: IUserRequest}>()
 );
 
 export const loadUsersSuccess = createAction(
   '[User] Load Users Success',
-  props<{ data: User }>()
+  props<{ data: IUserResponse }>()
 );
 
 export const loadUsersFailure = createAction(

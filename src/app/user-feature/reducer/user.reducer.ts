@@ -4,21 +4,26 @@ import { FeaturePermission } from 'src/app/shared/permission-control/models/feat
 import { Features } from 'src/app/shared/permission-control/models/features.enum';
 import { Permission } from 'src/app/shared/permission-control/models/permission.enum';
 import * as fromUserActions from '../actions';
-import { User } from '../models/user.model';
+import { IUserRequest, IUserResponse } from '../models/user.model';
 
 export const userFeatureKey = 'user';
 
 export interface UserState {
-  loadUser: User;
-  loadUserSuccess: User;
+  loadUser: IUserRequest;
+  loadUserSuccess: IUserResponse;
   loadUserFailure: any | Error;
 }
 
 let x: FeaturePermission[] =[{feature: Features.All, permission: Permission.Admin}];
-const u: User = {email:'', name: '', featurePermission: x};
+const u: IUserResponse = {email:'', name: '', featurePermission: x};
+
+let userReq: IUserRequest = {
+  email: '',
+  password: ''
+}
 
 export const initialState: UserState = {
-  loadUser: u,
+  loadUser: userReq,
   loadUserFailure: undefined,
   loadUserSuccess: u
 };
@@ -26,10 +31,10 @@ export const initialState: UserState = {
 export const reducer = createReducer(
   initialState,
 
-  // on(fromUserActions.loadUsers, (state, action) => ({
-  //   ...state,
-  //   loadUser: action.type
-  // })),
+  on(fromUserActions.loadUsers, (state, action) => ({
+    ...state,
+    loadUser: action.request
+  })),
   on(fromUserActions.loadUsersSuccess, (state, action) => ({
     ...state,
     loadUserSuccess: action.data

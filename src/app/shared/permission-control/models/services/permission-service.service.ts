@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User } from 'src/app/user-feature/models/user.model';
+import { IUserResponse } from 'src/app/user-feature/models/user.model';
 import { Features } from '../features.enum';
 import { Permission } from '../permission.enum';
 
@@ -8,7 +8,7 @@ import { Permission } from '../permission.enum';
 })
 export class PermissionService {
   checkPermissionLevel(
-    user: User,
+    user: IUserResponse,
     feature: Features,
     permission: Permission
   ): boolean {
