@@ -4,4 +4,14 @@
     <input placeholder="Password" type="password" formControlName="password" />
     <button type="submit" [disabled]="!profileForm.valid">Submit</button>
   </form>
+  <div>
+    <p>User login details:</p>
+    <ul class="ul">
+      <li>admin@company.com</li>
+      <li>user1@company.com</li>
+      <li>user2@company.com</li>
+      <li>incorrect details will default to admin</li>
+      <li>password can be anything - 123</li>
+    </ul>
+  </div>
 </div>

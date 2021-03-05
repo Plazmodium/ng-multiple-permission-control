@@ -1,8 +1,8 @@
 .container {
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
-  background-color: red;
   height: 100%;
 }
 
@@ -11,4 +11,11 @@
   flex-direction: column;
   justify-content: space-between;
   height: 10%;
+  background-color: rgb(73, 160, 236);
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.ul {
+  color: rgb(170, 170, 170);
 }

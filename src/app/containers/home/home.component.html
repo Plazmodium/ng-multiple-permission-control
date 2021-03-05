@@ -5,7 +5,7 @@
 </div>
 <br />
 
-<div class="sections-container">
+<!-- <div class="sections-container">
   <div *appCheckPermissions="permission; feature: feature" class="sections">
     <div class="text">
       Admin can see all
@@ -23,6 +23,45 @@
       User 2 can see: Section 2
     </div>
   </div>
-</div>
+</div> -->
 
-<div></div>
+<div [ngSwitch]="permission">
+  <div *ngSwitchCase="'admin'">
+    <div class="sections2">
+      <div class="text">
+        Admin can see all
+      </div>
+    </div>
+    <div class="sections2">
+      <div class="text">
+        User 1 can see: Section 1
+      </div>
+    </div>
+    <div class="sections2">
+      <div class="text">
+        User 2 can see: Section 2
+      </div>
+    </div>
+  </div>
+  <div *ngSwitchCase="'user1'">
+    <div class="sections2">
+      <div class="text">
+        User 1 can see: Section 1
+      </div>
+    </div>
+  </div>
+  <div *ngSwitchCase="'user2'">
+    <div class="sections2">
+      <div class="text">
+        User 2 can see: Section 2
+      </div>
+    </div>
+  </div>
+  <div *ngSwitchDefault>
+    <div class="sections2">
+      <div class="text">
+        Admin can see all
+      </div>
+    </div>
+  </div>
+</div>
